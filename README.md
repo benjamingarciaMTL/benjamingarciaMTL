@@ -17,7 +17,7 @@ Everything stays on your machine: one SQLite file, no cloud dependency, no telem
 | **[writ](https://github.com/usewrit/writ)** | The self-hosted coordinator — API, web UI, scheduler, document/OCR extraction. `docker compose up`. |
 | **[writ-agent](https://github.com/usewrit/writ-agent)** | The Rust fleet agent that drives the browsers. Dials out over WebSocket; no inbound ports. |
 | **[writ-sdks](https://github.com/usewrit/writ-sdks)** | Client SDKs for TypeScript, Python, Go and Rust — four languages, one contract. |
-| **[writ-mcp](https://github.com/usewrit/writ-mcp)** | The MCP connector. Your saved workflows become tools an AI assistant can run. Zero dependencies. |
+| **[writ-mcp](https://github.com/usewrit/writ-mcp)** | The MCP connector. Your saved workflows become tools an AI assistant can call. Zero dependencies. |
 
 ### How it's built
 
@@ -28,6 +28,14 @@ Some of what that has meant in practice:
 - The agent refuses loopback, RFC1918 and cloud-metadata addresses outright, and normalises IPv4-mapped IPv6 before checking — SSRF protection that can't be argued around with an env var.
 - Releases are gated end-to-end across repositories: bring the stack up, create the owner, install the *published* agent release through the same one-liner the UI prints, verify its checksum, record a workflow on a real browser, replay it, and call it over both REST and MCP. A tag isn't cut until that passes.
 - AGPL-3.0, with a live `GET /api/about` source offer, because §13 asks for one and network services are exactly where it matters.
+
+### How I got here
+
+I have been writing software since I was eleven, when modding games turned into wanting to understand what I was actually changing. Desktop applications and websites came next. At seventeen I registered as a sole trader doing on-site computer repair, and built brochure sites for local businesses alongside it. All of it self-taught, none of it in a classroom.
+
+Today I manage a bakery. Writ is what happens outside a fifty-hour week.
+
+AI tooling is a real part of how one person ships something this size, and I would rather say so than have you wonder. It compounds what I already knew — full-stack, DevOps, and the operational side of running things that other people depend on — instead of standing in for it. The architecture, the reviews and the verification are mine. That is precisely why the release gate above exists: I don't ship what I haven't watched work end to end.
 
 ### Elsewhere
 
